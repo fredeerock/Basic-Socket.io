@@ -1,0 +1,8 @@
+{
+  "name": "sockets",
+  "description": "A package using versioning best-practices",
+  "author": "Derick Ostrenko <dostenko@gmail.com>",
+  "dependencies": {
+    "socket.io": "1.0.x"
+  }
+}
