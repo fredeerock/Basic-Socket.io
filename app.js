@@ -41,7 +41,7 @@ var app = http.createServer(function(request, response) {
       }
 
       response.writeHead(200, {"Content-Type": contentType});
-      response.write(file);
+      response.write(file); // add "binary" here?
       response.end();
     });
   });
@@ -50,15 +50,21 @@ var app = http.createServer(function(request, response) {
 console.log("Static file server running at => http://localhost:" + port);
 
 
-/////////////////////
-//Socket.io Example//
-/////////////////////
+///////////////
+//Socket.io //
+//////////////
 
 var io = require('socket.io')(app);
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
+
   socket.on('my other event', function (data) {
     console.log(data);
   });
+
+  socket.on('the date', function (data) {
+  	console.log(data);
+  });
+
 });
