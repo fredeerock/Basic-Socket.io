@@ -17,18 +17,20 @@
 
 	<script>
 
-		var sint = setInterval(sendData, 1000);
+		setInterval(heartbeat, 5000);
 
-		function sendData() {
-			socket.emit('the date', { its: new Date() })
+		function heartbeat() {
+			var theDate = new Date();
+			socket.emit('the date', { heartbeat: theDate });
+			console.log(theDate);
 		}
 
 		var socket = io('http://localhost:3000');
 
-		socket.on('news', function (data) {
-			console.log(data);
-			socket.emit('my other event', { my: 'data' });
-		});
+		// socket.on('news', function (data) {
+		// 	console.log(data);
+		// 	socket.emit('my other event', { my: 'data' });
+		// });
 	</script>
 
 </body>
