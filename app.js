@@ -17,7 +17,7 @@ var contentTypes = {
 var app = http.createServer(function(request, response) {
 
   var uri = url.parse(request.url).pathname
-    , filename = path.join(process.cwd(), uri);
+    , filename = path.join(process.cwd(), '/public', uri);
   
   path.exists(filename, function(exists) {
     if(!exists) {
@@ -57,14 +57,13 @@ console.log("Static file server running at => http://localhost:" + port);
 var io = require('socket.io')(app);
 
 io.on('connection', function (socket) {
-  // socket.emit('news', { hello: 'world' });
+  
+  // Send data to client with socket.emit
+  socket.emit('from server', { server: 'hello client' });
 
-  // socket.on('my other event', function (data) {
-  //   console.log(data);
-  // });
-
-  socket.on('the date', function (data) {
-  	console.log(data);
-  });
+  // Receive data from client with socket.on
+  socket.on('from client', function (data) { console.log(data);});
 
 });
+
+

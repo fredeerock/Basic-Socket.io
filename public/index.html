@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Sockets!</title>
+
+	<script src="/socket.io/socket.io.js"></script>
+
+</head>
+
+<body>
+
+	<script type="application/javascript">
+
+		/////////////
+		//SOCKET.IO//
+		/////////////
+
+		// Make the connection
+		var socket = io('http://localhost:3000');
+
+		// Send data to the server
+		window.onload = function() {
+			socket.emit('from client', { client: 'hello server' });
+		}
+
+		// Receive data from the server
+		socket.on('from server', function (data) {
+			console.log(data);
+		});
+
+	</script>
+
+</body>
+</html>
